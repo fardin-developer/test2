@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Get More Accurate Location</title>
+  <style>
+    body{
+        width: 100vw;
+        height: 100vh;
+    }
+    button{
+        margin: auto;
+        padding: 10px;
+        background-color: azure;
+    }
+  </style>
 </head>
 <body>
 
@@ -14,8 +25,8 @@ function getAccurateLocation() {
   if (navigator.geolocation) {
     const options = {
       enableHighAccuracy: true,
-      timeout: 5000,  // Maximum time (in milliseconds) to wait for location data
-      maximumAge: 0   // Maximum age (in milliseconds) of the cached location data
+      timeout: 5000, 
+      maximumAge: 0   
     };
 
     navigator.geolocation.getCurrentPosition(

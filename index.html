@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Location</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<button id="getLocationBtn">Get Location</button>
+
+<script>
+document.getElementById('getLocationBtn').addEventListener('click', function() {
+  // Check if the user's device supports the Geolocation API
+  if (navigator.geolocation) {
+    // Open Google Maps app on iOS or Android
+    if (navigator.platform.indexOf('iPhone') !== -1 || navigator.platform.indexOf('iPad') !== -1 || navigator.platform.indexOf('iPod') !== -1){
+      window.open('maps://maps.google.com/maps?daddr=' + '&amp;ll=');
+    } else if (navigator.platform.indexOf('Android') !== -1){
+      window.open('geo:0,0?q=');
+    }
+
+    // Get user's current location using the Geolocation API
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Handle the obtained coordinates, for example, display them on the website
+        alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      },
+      function(error) {
+        console.error('Error getting location:', error.message);
+      }
+    );
+  } else {
+    // Open Google Maps website as a fallback for other platforms
+    window.open('https://www.google.com/maps');
+  }
+});
+</script>
+
+</body>
+</html>
